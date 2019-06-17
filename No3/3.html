@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>3번 문제</title>
+    <style>
+        #image {
+            border: 1px solid black;
+        }
+    </style>
+    
+    <script type="text/javascript">
+        window.onload = function() {
+            // h1 태그에 date 객체 생성
+            document.getElementById('date').innerHTML = new Date();
+
+            // btn 객체 가져오기
+            var btn = document.getElementById('btn');
+            // image 객체 가져오기
+            var image = document.getElementById('image');
+
+            // 마우스 오버
+            image.onmouseover = function() {
+                image.style.borderRadius = "25px";
+            };
+
+            // 마우스 아웃
+            image.onmouseout = function() {
+                image.style.borderRadius = "0px";
+            };
+
+            // btn 버튼 클릭 이벤트 처리
+            btn.onclick = function() {
+                // 1초마다 시간 갱신
+                var repeat = setInterval(function() {
+                    document.getElementById('date').innerHTML = new Date();
+
+                    // 이미지 크기 5씩 늘리기
+                    var width = 200;
+
+                    // 이미지 넓이가 250이 되면 중단
+                    image.width += 5;
+
+                    // 넓이 출력
+                    var size = document.getElementById('size');
+                    size.innerHTML = "현재너비 : " + image.width + ", 현재높이 : " + image.height;
+
+                    // 넓이가 250 되면 중단
+                    if (image.width == 250) {
+                        clearInterval(repeat);
+                    }
+                }, 1000);
+            };
+        };
+    </script>
+</head>
+
+<body>
+    <h1 id="date"></h1>
+    <br>
+    <button id="btn">타이머 시작</button>
+    <br>
+    <figure>
+        <img id="image" src="sample.jpg" width="200">
+        <figcaption id="size">현재너비 : 200, 현재높이 : 200</figcaption>
+    </figure>
+</body>
+
+</html>
